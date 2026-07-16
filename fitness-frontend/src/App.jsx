@@ -38,7 +38,7 @@ function App() {
   const checkExistingMetrics = async (userId) => {
     try {
       // Hits the profile routing validation endpoint
-      const pRes = await axios.get(`http://localhost:5000/api/profile-check/${userId}`);
+      const pRes = await axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/profile-check/${userId}`);
       if (pRes.data.exists) {
         setProfile(pRes.data.profile);
         
@@ -49,9 +49,9 @@ function App() {
 
         // Pre-fetch downstream plans concurrently
         const [wRes, dRes, tRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/workout/${userId}`),
-          axios.get(`http://localhost:5000/api/diet/${userId}`),
-          axios.get(`http://localhost:5000/api/timeline/${userId}`),
+          axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/workout/${userId}`),
+          axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/diet/${userId}`),
+          axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/timeline/${userId}`),
         ]);
 
         setWorkout(wRes.data);
@@ -90,7 +90,7 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      const profileRes = await axios.post("http://localhost:5000/api/profile", {
+      const profileRes = await axios.post("https://my-fitness-app-backend-73tz.onrender.com/api/profile", {
         user_id: user.id,
         weight_kg: parseFloat(weight),
         height_cm: parseFloat(height),
@@ -99,9 +99,9 @@ function App() {
       setProfile(profileRes.data.profile);
 
       const [wRes, dRes, tRes] = await Promise.all([
-        axios.get(`http://localhost:5000/api/workout/${user.id}`),
-        axios.get(`http://localhost:5000/api/diet/${user.id}`),
-        axios.get(`http://localhost:5000/api/timeline/${user.id}`),
+        axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/workout/${user.id}`),
+        axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/diet/${user.id}`),
+        axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/timeline/${user.id}`),
       ]);
 
       setWorkout(wRes.data);
@@ -117,7 +117,7 @@ function App() {
 
   const handleRerollDiet = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/diet/${user.id}`);
+      const res = await axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/diet/${user.id}`);
       setDiet(res.data.diet_plan);
     } catch (err) {
       console.error(err);
