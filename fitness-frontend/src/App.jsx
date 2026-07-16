@@ -426,7 +426,7 @@ function App() {
                   <button
                     onClick={async () => {
                       try {
-                        const res = await axios.get(`http://localhost:5000/api/workout/${user.id}`);
+                        const res = await axios.get(`https://my-fitness-app-backend-73tz.onrender.com/api/workout/${user.id}`);
                         setWorkout(res.data);
                       } catch (err) {
                         alert("Failed to randomize new training routine variations.");
