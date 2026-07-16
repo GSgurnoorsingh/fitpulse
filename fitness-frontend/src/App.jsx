@@ -72,7 +72,7 @@ function App() {
     if (!username || !password) return;
     const endpoint = isRegisterMode ? "register" : "login";
     try {
-      const res = await axios.post(`http://localhost:5000/api/${endpoint}`, {
+      const res = await axios.post(`https://my-fitness-app-backend-73tz.onrender.com/api/${endpoint}`, {
         username,
         password,
       });
