@@ -1,0 +1,15 @@
+name: Keep App Alive
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every Sunday and Wednesday (Twice a week)
+    - cron: '0 0 * * 0,3'
+  workflow_dispatch: # Allows you to manually trigger it from GitHub to test it
+
+jobs:
+  ping-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send a keep-alive ping to backend
+        run: |
+          curl -s https://my-fitness-app-backend-73tz.onrender.com/api/health
