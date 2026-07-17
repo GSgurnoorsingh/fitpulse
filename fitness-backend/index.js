@@ -211,6 +211,16 @@ app.get("/api/timeline/:user_id", async (req, res) => {
   }
 });
 
+app.get('/api/health', async (req, res) => {
+  try {
+    await pool.query('SELECT 1'); 
+    res.status(200).json({ status: 'OK', database: 'Connected' });
+  } catch (err) {
+    console.error('Health check database error:', err);
+    res.status(500).json({ status: 'Error', message: 'Database unreachable' });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
